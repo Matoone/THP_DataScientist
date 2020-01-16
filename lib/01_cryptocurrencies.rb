@@ -7,6 +7,22 @@ $values = ["$6558.07", "$468.95", "$0.487526", "$762.84", "$8.86", "$85.26", "$0
  "$0.042993", "$0.000325", "$0.000271", "$0.002799", "$0.071591", "$1.17", "$0.001171", "$0.000651", "$0.000195", "$0.001562", "$0.008721", "$0.000065", "$0.000130", "$0.002473", "$0.000065", "$0.000325", "$0.656235", "$0.000254", "$0.000518", "$0.000065", "$0.054733", "$9.85", "$0.000520", "$0.000259", "$0.003288", "$0.006578", "$0.004273", "$0.024932", "$0.011394"]
 
 $hash = Hash[$currencies.zip($values)]
+def remove_dollar (h)
+    hash_formatted = $hash.each  do |key, value|
+    value = value.tr("$", "")
+    value = value.to_f 
+    h[key]= value
+    end
+  return h
+end
+
+def sort_ascending (h)
+  return h.sort_by {|key, value| value}
+end
+
+def format_float(number)
+  sprintf('%.15f', number).sub(/0+$/, '').sub(/\.$/, '.0')
+end
 # puts "#{$hash}"
 
 #Plus grosse valeur : Coder fonction avec en entrée le nombre choisi de plus grosses valeurs utiliser fonction avec sort
@@ -18,21 +34,32 @@ $hash = Hash[$currencies.zip($values)]
 
 
 def display_biggest_values(nombre_de_valeurs_desirees)
-  h= {}
-  sorted_hash = $hash.each  do |key, value|
-   value = value.tr("$", "")
-   value = value.to_f 
-   h[key]= value
-   
-   
-   
+  
+  
    #puts "#{h[key]}"
+  final = $hash[-nombre_de_valeurs_desirees..-1].reverse
+  puts "Voici les #{nombre_de_valeurs_desirees} plus fortes valeurs:"
+  final.each do |key, value|
+    puts "#{key} >>>>>>>>>>>>>>>>>>>>>>>> $#{format_float(value)}"
   end
-  puts "#{h.sort_by {|key, value| value}[-5..-1]}"
+  #puts "Les valeurs les plus hautes sont : #{final[0..nombre_de_valeurs_desirees]}"
+end
+
+def display_lowest_values(nombre_de_valeurs_desirees)
+  
+  final = $hash[0..nombre_de_valeurs_desirees]
+  puts "Voici les #{nombre_de_valeurs_desirees} moins fortes valeurs:"
+  final.each do |key, value|
+    puts "#{key} >>>>>>>>>>>>>>>>>>>>>>>> $#{format_float(value)}"
+  end
 end
 
 def perform
+  
+$hash = remove_dollar($hash)
+$hash = sort_ascending($hash)
 display_biggest_values(5)
+display_lowest_values(5)
 
 end
 
