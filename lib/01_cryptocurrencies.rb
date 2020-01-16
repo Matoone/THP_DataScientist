@@ -91,10 +91,10 @@ def main_menu
 
 end
 
-
+$reformated = remove_dollar($reformated)
+$reformated = sort_ascending($reformated)
 def perform
-  $reformated = remove_dollar($reformated)
-  $reformated = sort_ascending($reformated)
+  
   choice = ""
   loop do
     puts "                   Bienvenue. Que voulez-vous faire?"
@@ -162,3 +162,14 @@ def perform
 end
 
 perform()
+again = ""
+loop do
+  puts "Voulez-vous effectuer une autre action (tapez R et validez avec ENTREE) ou quitter (tapez Q et validez avec ENTREE)?"
+  again = gets.chomp()
+  if again == "r"
+  perform()
+  elsif again == "q"
+    puts "Bye Bye!"
+    break
+  end
+end
