@@ -7,6 +7,7 @@ $values = ["$6558.07", "$468.95", "$0.487526", "$762.84", "$8.86", "$85.26", "$0
  "$0.042993", "$0.000325", "$0.000271", "$0.002799", "$0.071591", "$1.17", "$0.001171", "$0.000651", "$0.000195", "$0.001562", "$0.008721", "$0.000065", "$0.000130", "$0.002473", "$0.000065", "$0.000325", "$0.656235", "$0.000254", "$0.000518", "$0.000065", "$0.054733", "$9.85", "$0.000520", "$0.000259", "$0.003288", "$0.006578", "$0.004273", "$0.024932", "$0.011394"]
 
 $hash = Hash[$currencies.zip($values)]
+# puts "#{$values.length}"
 def remove_dollar (h)
     hash_formatted = $hash.each  do |key, value|
     value = value.tr("$", "")
@@ -22,6 +23,16 @@ end
 
 def format_float(number)
   sprintf('%.15f', number).sub(/0+$/, '').sub(/\.$/, '.0')
+end
+
+def return_number_of_occurences_of_string_in_currencies(string)
+  nbr =0
+  $hash.each do |key, value|
+    if key.include? string
+      nbr += 1
+    end
+  end
+  puts "Il y a #{nbr} occurences de la chaine #{string} !" 
 end
 # puts "#{$hash}"
 
@@ -54,12 +65,28 @@ def display_lowest_values(nombre_de_valeurs_desirees)
   end
 end
 
+def filter_currencies_by_max_non_included_value (nbr)
+  filtered_hash = {}
+  # puts "#{$hash.length}"
+  $hash.each do |key, value|
+    if value < nbr
+      filtered_hash[key] = value
+    end
+  end
+  return filtered_hash
+end
+
+def display_hash_length (hash, val)
+  puts "Le nombre de cryptomonnaies ayant une valeur de moins de #{val} est de : #{hash.length}"
+end
 def perform
   
 $hash = remove_dollar($hash)
 $hash = sort_ascending($hash)
 display_biggest_values(5)
 display_lowest_values(5)
+return_number_of_occurences_of_string_in_currencies("coin")
+display_hash_length(filter_currencies_by_max_non_included_value(6000.0), 6000)
 
 end
 
