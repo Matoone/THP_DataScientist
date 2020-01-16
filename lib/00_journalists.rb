@@ -33,13 +33,15 @@ def get_length(arr)
 end
 
 def perform
-  
   get_length($journalists)
   nbr_of_journalists_with_a_number()
   nbr_that_includes_in($journalists, "aude")
   nbr_that_begins_with_uppercase($journalists)
   nbr_that_contain_upcase($journalists)
-  
+  number_that_contains_underscore($journalists)
+  sort_by_order($journalists)
+  sort_by_length($journalists)
+  find($journalists, "@epenser")
 end
 
 def nbr_of_journalists_with_a_number
@@ -75,6 +77,10 @@ def contains_maj (str)
   str =~ /[A-Z]/
 end
 
+def contains_underscore(str)
+  str =~ /[_]/
+end
+
 def nbr_that_contain_upcase (arr)
   nbr = 0
   arr.each do |entry|
@@ -93,6 +99,33 @@ def nbr_that_begins_with_uppercase (arr)
     end
   end
   puts "Il y a #{nbr} journalistes dont le handle commence par une majuscule!"
+end
+
+def number_that_contains_underscore(arr)
+  nbr = 0
+  arr.each do |entry|
+    if contains_underscore(entry)
+      nbr += 1
+    end
+end
+  puts "Il y a #{nbr} journalistes dont le handle contient un underscore !"
+end
+
+def sort_by_order(arr)
+  sorted = arr.sort()
+  puts "#{sorted}"
+  
+end
+
+def sort_by_length(arr)
+sorted_list = arr.sort_by{|word| word.length}
+puts "Voici la liste des 50 handles les plus courts :#{sorted_list[0..50]}"
+
+end
+
+def find(arr, entry)
+  puts "Voici la place de #{entry} : #{arr.index(entry)} !"
+  
 end
 
 perform()
