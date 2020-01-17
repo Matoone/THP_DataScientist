@@ -59,7 +59,7 @@ end
 def nbr_that_includes_in(arr, what)
   nbr = 0
   arr.each do |entry|
-    if entry.include?(what)
+    if entry.include?(what) || entry.include?(what.capitalize)
       nbr +=1
     end
     end
