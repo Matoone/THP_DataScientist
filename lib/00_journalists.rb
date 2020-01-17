@@ -66,7 +66,8 @@ def nbr_that_begins_with_uppercase (arr)
   nbr = 0
   arr.each do |entry|
     first_letter = entry[1]
-    if first_letter.upcase == first_letter
+    if (first_letter.upcase == first_letter && first_letter != "_")
+      
       nbr +=1
     end
   end
