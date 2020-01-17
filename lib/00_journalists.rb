@@ -66,12 +66,9 @@ def nbr_that_begins_with_uppercase (arr)
   nbr = 0
   arr.each do |entry|
     first_letter = entry[1]
-    if first_letter =~ /[a-z]/
-      if first_letter.upcase == first_letter
-        nbr +=1
-      end
+    if first_letter.upcase == first_letter
+      nbr +=1
     end
-    
   end
   puts "Il y a #{nbr} journalistes dont le handle commence par une majuscule!"
 end
