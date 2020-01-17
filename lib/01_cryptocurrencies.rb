@@ -28,19 +28,13 @@ end
 def return_number_of_occurences_of_string_in_currencies(array, string)
   nbr =0
   array.each do |key, value|
-    if key.include? string
+
+    if key.downcase.include? string
       nbr += 1
     end
   end
   puts "Il y a #{nbr} occurences de la chaine #{string} !" 
 end
-# puts "#{$reformated}"
-
-#Plus grosse valeur : Coder fonction avec en entrée le nombre choisi de plus grosses valeurs utiliser fonction avec sort
-#Plus petite valeur : meme chose
-#Crypto contenant "coin" : Regex sur "coin"
-#Devises dont cours inférieur à 6000 : initialiser un nouveau hash vide et le définir en variable globale pour exercice suivant, boucle sur Hash avec each, pour chaque entrée enlever le $ puis passer en Int puis tester si inférieur 6000. Si true ajouter au nouveau hash puis return nouveau hash quand la boucle est finie.
-#Devise la plus chère quand cours supérieur a 6000 : Tri avec sort sur le hash de l'exercice précédent
 
 
 

@@ -50,7 +50,7 @@ def contains_maj (str)
 end
 
 def contains_underscore(str)
-  str =~ /_/
+  str =~ /[_]+/
 end
 
 def nbr_that_contain_upcase (arr)
@@ -78,6 +78,7 @@ def number_that_contains_underscore(arr)
   nbr = 0
   arr.each do |entry|
     if contains_underscore(entry)
+      puts "#{entry}"
       nbr += 1
     end
 end
