@@ -50,7 +50,7 @@ def contains_maj (str)
 end
 
 def contains_underscore(str)
-  str =~ /[_]/
+  str =~ /_/
 end
 
 def nbr_that_contain_upcase (arr)
@@ -84,6 +84,9 @@ end
 end
 
 def sort_by_order(arr)
+  sorted = arr.each do |entry|
+    entry.downcase
+  end
   sorted = arr.sort()
   puts "#{sorted}"
   
